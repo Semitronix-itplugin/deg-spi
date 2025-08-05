@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 用于从文件中导出单个table的数据转换接口
+ */
 public interface FormatConverter {
     /**
      * 将输入数据文件转换成标准的csv格式数据文件
@@ -15,7 +18,7 @@ public interface FormatConverter {
     void convert(String[] inputs, String output) throws Exception;
 
     /**
-     * use ColumnType
+     * 指定列类型
      */
     default Map<String, Integer> getUserDefinedColumnTypes() {
         return new HashMap<>();
@@ -49,6 +52,11 @@ public interface FormatConverter {
         return new ArrayList<>();
     }
 
+    /**
+     * 实际支持文件选择框多选
+     * 
+     * @return true代表支持，false代表不支持
+     */
     default boolean isAllMultiple() {
         return true;
     }

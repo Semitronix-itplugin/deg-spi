@@ -13,10 +13,10 @@ public interface MultiOutputFormatConvert {
      * 将输入数据文件转换成标准的csv格式数据文件
      * 
      * @param inputs     数据文件的路径
-     * @param outputType 需要转换的数据类型
      * @param output     输出csv的路径
+     * @param outputType 需要转换的数据类型
      */
-    void convert(String[] inputs, String outputType, String output) throws Exception;
+    void convert(String[] inputs, String output, String outputType) throws Exception;
 
     /**
      * 返回定制Parser绑定的用户名
@@ -28,7 +28,7 @@ public interface MultiOutputFormatConvert {
     List<String> getOutputTypes();
 
     /**
-     * use ColumnType
+     * 指定列类型
      */
     default Map<String, Map<String, Integer>> getMultiUserDefinedColumnTypes() {
         return new HashMap<>();
@@ -55,6 +55,11 @@ public interface MultiOutputFormatConvert {
         return new ArrayList<>();
     }
 
+    /**
+     * 实际支持文件选择框多选
+     * 
+     * @return true代表支持，false代表不支持
+     */
     default boolean isAllMultiple() {
         return true;
     }
